@@ -41,6 +41,13 @@ public:
     // 2.1.1 ......
     // 2.2 admin界面
     // 2.2.2 ......
+
+private slots:
+    void on_pushButton_login_clicked(); // 登录按钮
+    void on_pushButton_exit_clicked(); // 退出按钮
+    void on_checkBox_toggled(bool checked); // 是否显示密码
+    void on_pushButton_register_clicked(); // 注册按钮
+
 private:
     Ui::MainWindow *ui;
 };
