@@ -11,18 +11,19 @@ CONFIG += c++17
 
 SOURCES += \
     admin.cpp \
-    booking.cpp \
     flight.cpp \
     main.cpp \
     mainwindow.cpp \
-    user.cpp
+    order.cpp \
+    person.cpp
 
 HEADERS += \
     admin.h \
-    booking.h \
+    databaseManagement.h \
     flight.h \
     mainwindow.h \
-    user.h
+    order.h \
+    person.h
 
 FORMS += \
     mainwindow.ui

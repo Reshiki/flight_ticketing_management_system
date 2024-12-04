@@ -1,34 +1,29 @@
 #include "mainwindow.h"
-
-#include <QApplication>
-
+#include "databaseManagement.h"
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QDebug>
 
-bool openDatabase() {
-    // 连接数据库
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-    db.setHostName("127.0.0.1");
-    db.setPort(3306);
-    db.setDatabaseName("persondb");
-    db.setUserName("root");
-    db.setPassword("741456963");
-
-    if (!db.open()) {
-        qDebug() << "Error: Unable to connect to database!" << db.lastError();
-        return false;
-    }
-    qDebug() << "Database connection established!";
-    return true;
-}
-
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    openDatabase();
+    DatabaseManager &dbManager = DatabaseManager::instance();
+    if(dbManager.addDatabase("PersonDB", "QODBC", "127.0.0.1", 3306, "persondb", "root", "741456963")){
+        qDebug() << "成功打开PersonDB数据库";
+    } else{
+        qDebug() <<  "打开PersonDB数据库失败";
+    };
+    if(dbManager.addDatabase("FlightDB", "QODBC", "127.0.0.1", 3306, "flightdb", "root", "741456963")){
+        qDebug() << "成功打开FlightDB数据库";
+    } else{
+        qDebug() << "打开FlightDB数据库失败";
+    };
+    if(dbManager.addDatabase("OrderDB", "QODBC", "127.0.0.1", 3306, "orderdb", "root", "741456963")){
+        qDebug() << "成功打开OrderDB数据库";
+    } else{
+        qDebug() << "打开OrderDB数据库失败";
+    }
     MainWindow w;
     w.show();
     return a.exec();
